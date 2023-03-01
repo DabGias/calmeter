@@ -5,17 +5,17 @@
 ### <font color="#00FF85">Endpoints 📖</font>
 
 - Agenda
-    - Definir metas
-    - Consultar dias até o fim da meta e calorias consumidas até o momento
+    - [Definir metas](#definir-metas)
+    - [Consultar dias até o fim da meta e calorias consumidas até o momento](#consultar-dias-até-o-fim-da-meta)
     
 - Gerenciar calorias do dia atual
-    - Adicionar porção/alimento
-    - Editar porção/alimento
-    - Detalhar porção/alimento
-    - Deletar porção/alimento
-    - Adicionar refeição
-    - Editar refeição
-    - Deletar refeição
+    - [Adicionar porção/alimento](#adicionar-porçãoalimento)
+    - [Editar porção/alimento](#editar-porçãoalimento)
+    - [Detalhar porção/alimento](#detalhar-porçãoalimento)
+    - [Deletar porção/alimento](#deletar-porçãoalimento)
+    - [Adicionar refeição](#adicionar-refeição)
+    - [Editar refeição](#editar-refeição)
+    - [Deletar refeição](#deletar-refeição)
 
 ### Definir metas
 
