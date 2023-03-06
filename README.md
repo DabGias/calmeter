@@ -59,9 +59,9 @@
 
 ```js
 {
-    "dias_restantes": 30,
-    "calorias_consumidas": 0,
-    "calorias_restantes": 30000
+    "meta": 30000,
+    "data_inicio": '2023-02-27',
+    "data_fim": '2023-03-27'
 }
 ```
 
