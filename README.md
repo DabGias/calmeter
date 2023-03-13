@@ -5,8 +5,10 @@
 ### <font color="#00FF85">Endpoints 📖</font>
 
 - Agenda
-    - [Definir metas](#definir-metas)
-    - [Consultar dias até o fim da meta e calorias consumidas até o momento](#consultar-dias-até-o-fim-da-meta)
+    - [Adicionar meta](#definir-metas)
+    - [Editar meta](#editar-meta)
+    - [Detalhar meta](#consultar-dias-até-o-fim-da-meta)
+    - [Deletar meta](#deletar-meta)
     
 - Gerenciar calorias do dia atual
     - [Adicionar porção/alimento](#adicionar-porçãoalimento)
@@ -17,7 +19,7 @@
     - [Editar refeição](#editar-refeição)
     - [Deletar refeição](#deletar-refeição)
 
-### Definir metas
+### Adicionar meta
 
 `POST` 👉 <font color="#fce03f">**calmeter/api/meta**</font>
 
@@ -44,9 +46,36 @@
 | `201` | Dados da meta foram cadastrados com sucesso.
 | `400` | Houve uma falha no cadastro dos dados.
 
-### Consultar dias até o fim da meta
+### Editar meta
 
-`GET` 👉 <font color="#fce03f">**calmeter/api/meta**</font>
+`PUT` 👉 <font color="#fce03f">**calmeter/api/meta/{id}**</font>
+
+| <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
+|:-----:|:----:|:-----------:|-----------|
+| meta | `int` | ✔ | Valor de calorias diárias que o usuário planeja ingerir. Não deve ser menor que 0. 
+| data_inicio | `date` | ✔ | Data em que o planejamento da meta se inicia. Não deve ser um dia passado.
+| data_fim | `date` | ✔ | Data em que o planejamento da meta finaliza.
+
+**👇 Corpo de requisição 👇**
+
+```js
+{
+    "meta": 30000,
+    "data_inicio": '2023-02-27',
+    "data_fim": '2023-03-27'
+}
+```
+
+**👇 Respostas 👇**
+
+| <font color="#aa31f5">código</font> | <font color="#e0af0d">descrição</font> |
+|:------:|-----------|
+| `200` | Dados da meta foram atualizados com sucesso.
+| `400` | Houve uma falha na atualização dos dados.
+
+### Detalhar meta
+
+`GET` 👉 <font color="#fce03f">**calmeter/api/meta/{id}**</font>
 
 **👇 Respostas 👇**
 
@@ -65,6 +94,17 @@
 }
 ```
 
+### Deletar meta
+
+`DELETE` 👉 <font color="#fce03f">**calmeter/api/emta/{id}**</font>
+
+**👇 Respostas 👇**
+
+| <font color="#aa31f5">código</font> | <font color="#e0af0d">descrição</font> |
+|:------:|-----------|
+| `204` | Dados da meta foram deletados com sucesso.
+| `404` | Não há uma meta com esse identificador até o momento.
+
 ### Adicionar porção/alimento
 
 `POST` 👉 <font color="#fce03f">**calmeter/api/alimento**</font>
@@ -74,6 +114,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
+| id_refeicao | `int` | ✔ | ID da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -81,7 +122,8 @@
 {
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
-    "calorias": 1000
+    "calorias": 1000,
+    "id_refeicao": 1
 }
 ```
 
@@ -101,6 +143,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
+| id_refeicao | `int` | ✔ | ID da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -108,7 +151,8 @@
 {
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
-    "calorias": 1000
+    "calorias": 1000,
+    "id_refeicao": 1
 }
 ```
 
@@ -136,7 +180,8 @@
 {
     "nome": "Torresmo",
     "descricao": "Torresminho bem crocante!",
-    "calorias": 500
+    "calorias": 500,
+    "id_refeicao": 1
 }
 ```
 
@@ -158,12 +203,18 @@
 | <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
 |:-----:|:----:|:-----------:|-----------|
 | nome | `string` | ✔ | Nome da refeição.
+| alimentos | `list` | ❌ | Alimentos da refeição.
 
 **👇 Corpo de requisição 👇**
 
 ```js
 {
-    "nome": "Café da tarde"
+    "nome": "Café da tarde",
+    "alimentos": [
+        "arroz e feijão",
+        "batata-frita",
+        "fanta laranja"
+    ]
 }
 ```
 
@@ -181,12 +232,18 @@
 | <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
 |:-----:|:----:|:-----------:|-----------|
 | nome | `string` | ✔ | Nome da refeição.
+| alimentos | `list` | ❌ | Alimentos da refeição.
 
 **👇 Corpo de requisição 👇**
 
 ```js
 {
-    "nome": "Refeição intermediária"
+    "nome": "Refeição intermediária",
+    "alimentos": [
+        "Arroz e feijão",
+        "Batata-frita",
+        "Fanta laranja"
+    ]
 }
 ```
 
