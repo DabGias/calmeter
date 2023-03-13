@@ -114,6 +114,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
+| id_refeicao | `int` | ✔ | ID da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -121,7 +122,8 @@
 {
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
-    "calorias": 1000
+    "calorias": 1000,
+    "id_refeicao": 1
 }
 ```
 
@@ -141,6 +143,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
+| id_refeicao | `int` | ✔ | ID da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -148,7 +151,8 @@
 {
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
-    "calorias": 1000
+    "calorias": 1000,
+    "id_refeicao": 1
 }
 ```
 
@@ -176,7 +180,8 @@
 {
     "nome": "Torresmo",
     "descricao": "Torresminho bem crocante!",
-    "calorias": 500
+    "calorias": 500,
+    "id_refeicao": 1
 }
 ```
 
