@@ -5,8 +5,10 @@
 ### <font color="#00FF85">Endpoints 📖</font>
 
 - Agenda
-    - [Definir metas](#definir-metas)
-    - [Consultar dias até o fim da meta](#consultar-dias-até-o-fim-da-meta)
+    - [Adicionar meta](#definir-metas)
+    - [Editar meta](#editar-meta)
+    - [Detalhar meta](#consultar-dias-até-o-fim-da-meta)
+    - [Deletar meta](#deletar-meta)
     
 - Gerenciar calorias do dia atual
     - [Adicionar porção/alimento](#adicionar-porçãoalimento)
@@ -17,7 +19,7 @@
     - [Editar refeição](#editar-refeição)
     - [Deletar refeição](#deletar-refeição)
 
-### Definir metas
+### Adicionar meta
 
 `POST` 👉 <font color="#fce03f">**calmeter/api/meta**</font>
 
@@ -44,9 +46,36 @@
 | `201` | Dados da meta foram cadastrados com sucesso.
 | `400` | Houve uma falha no cadastro dos dados.
 
-### Consultar dias até o fim da meta
+### Editar meta
 
-`GET` 👉 <font color="#fce03f">**calmeter/api/meta**</font>
+`PUT` 👉 <font color="#fce03f">**calmeter/api/meta/{id}**</font>
+
+| <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
+|:-----:|:----:|:-----------:|-----------|
+| meta | `int` | ✔ | Valor de calorias diárias que o usuário planeja ingerir. Não deve ser menor que 0. 
+| data_inicio | `date` | ✔ | Data em que o planejamento da meta se inicia. Não deve ser um dia passado.
+| data_fim | `date` | ✔ | Data em que o planejamento da meta finaliza.
+
+**👇 Corpo de requisição 👇**
+
+```js
+{
+    "meta": 30000,
+    "data_inicio": '2023-02-27',
+    "data_fim": '2023-03-27'
+}
+```
+
+**👇 Respostas 👇**
+
+| <font color="#aa31f5">código</font> | <font color="#e0af0d">descrição</font> |
+|:------:|-----------|
+| `200` | Dados da meta foram atualizados com sucesso.
+| `400` | Houve uma falha na atualização dos dados.
+
+### Detalhar meta
+
+`GET` 👉 <font color="#fce03f">**calmeter/api/meta/{id}**</font>
 
 **👇 Respostas 👇**
 
@@ -64,6 +93,17 @@
     "data_fim": '2023-03-27'
 }
 ```
+
+### Deletar meta
+
+`DELETE` 👉 <font color="#fce03f">**calmeter/api/emta/{id}**</font>
+
+**👇 Respostas 👇**
+
+| <font color="#aa31f5">código</font> | <font color="#e0af0d">descrição</font> |
+|:------:|-----------|
+| `204` | Dados da meta foram deletados com sucesso.
+| `404` | Não há uma meta com esse identificador até o momento.
 
 ### Adicionar porção/alimento
 
@@ -158,12 +198,18 @@
 | <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
 |:-----:|:----:|:-----------:|-----------|
 | nome | `string` | ✔ | Nome da refeição.
+| alimentos | `list` | ❌ | Alimentos da refeição.
 
 **👇 Corpo de requisição 👇**
 
 ```js
 {
-    "nome": "Café da tarde"
+    "nome": "Café da tarde",
+    "alimentos": [
+        "arroz e feijão",
+        "batata-frita",
+        "fanta laranja"
+    ]
 }
 ```
 
@@ -181,12 +227,18 @@
 | <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
 |:-----:|:----:|:-----------:|-----------|
 | nome | `string` | ✔ | Nome da refeição.
+| alimentos | `list` | ❌ | Alimentos da refeição.
 
 **👇 Corpo de requisição 👇**
 
 ```js
 {
-    "nome": "Refeição intermediária"
+    "nome": "Refeição intermediária",
+    "alimentos": [
+        "Arroz e feijão",
+        "Batata-frita",
+        "Fanta laranja"
+    ]
 }
 ```
 
