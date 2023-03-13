@@ -6,7 +6,7 @@
 
 - Agenda
     - [Definir metas](#definir-metas)
-    - [Consultar dias até o fim da meta e calorias consumidas até o momento](#consultar-dias-até-o-fim-da-meta)
+    - [Consultar dias até o fim da meta](#consultar-dias-até-o-fim-da-meta)
     
 - Gerenciar calorias do dia atual
     - [Adicionar porção/alimento](#adicionar-porçãoalimento)
