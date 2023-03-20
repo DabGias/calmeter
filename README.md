@@ -114,7 +114,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
-| idRefeicao | `int` | ✔ | ID da refeição.
+| refeicao | `string` | ✔ | Nome da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -123,7 +123,7 @@
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
     "calorias": 1000,
-    "id_refeicao": 1
+    "refeicao": "Café da madrugada"
 }
 ```
 
@@ -143,7 +143,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
-| idRefeicao | `int` | ✔ | ID da refeição.
+| refeicao | `string` | ✔ | nome da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -152,7 +152,7 @@
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
     "calorias": 1000,
-    "idRefeicao": 1
+    "refeicao": "Café da madrugada"
 }
 ```
 
@@ -181,7 +181,7 @@
     "nome": "Torresmo",
     "descricao": "Torresminho bem crocante!",
     "calorias": 500,
-    "idRefeicao": 1
+    "refeicao": "Café da madrugada"
 }
 ```
 
