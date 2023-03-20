@@ -2,10 +2,28 @@ package br.com.fiap.calmeter.models;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_meta")
 public class Meta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_meta")
     private Long id;
+
+    @Column(name = "cal_meta")
     private int meta;
+
+    @Column(name = "dt_inicio_meta")
     private LocalDate dataInicio;
+
+    @Column(name = "dt_fim_meta")
     private LocalDate dataFim;
 
     public Meta() {}
