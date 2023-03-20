@@ -26,16 +26,16 @@
 | <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
 |:-----:|:----:|:-----------:|-----------|
 | meta | `int` | ✔ | Valor de calorias diárias que o usuário planeja ingerir. Não deve ser menor que 0. 
-| dataInicio | `date` | ✔ | Data em que o planejamento da meta se inicia. Não deve ser um dia passado.
-| dataFim | `date` | ✔ | Data em que o planejamento da meta finaliza.
+| data_inicio | `date` | ✔ | Data em que o planejamento da meta se inicia. Não deve ser um dia passado.
+| data_fim | `date` | ✔ | Data em que o planejamento da meta finaliza.
 
 **👇 Corpo de requisição 👇**
 
 ```js
 {
     "meta": 30000,
-    "dataInicio": '2023-02-27',
-    "dataFim": '2023-03-27'
+    "data_inicio": '2023-02-27',
+    "data_fim": '2023-03-27'
 }
 ```
 
@@ -53,16 +53,16 @@
 | <font color="#47a3ff">campo</font> | <font color="#aa31f5">tipo</font> | <font color="#ff5226">obrigatório</font> | <font color="#e0af0d">descrição</font> |
 |:-----:|:----:|:-----------:|-----------|
 | meta | `int` | ✔ | Valor de calorias diárias que o usuário planeja ingerir. Não deve ser menor que 0. 
-| dataInicio | `date` | ✔ | Data em que o planejamento da meta se inicia. Não deve ser um dia passado.
-| dataFim | `date` | ✔ | Data em que o planejamento da meta finaliza.
+| data_inicio | `date` | ✔ | Data em que o planejamento da meta se inicia. Não deve ser um dia passado.
+| data_fim | `date` | ✔ | Data em que o planejamento da meta finaliza.
 
 **👇 Corpo de requisição 👇**
 
 ```js
 {
     "meta": 30000,
-    "dataInicio": '2023-02-27',
-    "dataFim": '2023-03-27'
+    "data_inicio": '2023-02-27',
+    "data_fim": '2023-03-27'
 }
 ```
 
@@ -89,8 +89,8 @@
 ```js
 {
     "meta": 30000,
-    "dataInicio": '2023-02-27',
-    "dataFim": '2023-03-27'
+    "data_inicio": '2023-02-27',
+    "data_fim": '2023-03-27'
 }
 ```
 
@@ -114,7 +114,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
-| refeicao | `string` | ✔ | Nome da refeição.
+| idRefeicao | `int` | ✔ | ID da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -123,7 +123,7 @@
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
     "calorias": 1000,
-    "refeicao": "Café da madrugada"
+    "id_refeicao": 1
 }
 ```
 
@@ -143,7 +143,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
-| refeicao | `string` | ✔ | nome da refeição.
+| idRefeicao | `int` | ✔ | ID da refeição.
 
 **👇 Corpo de requisição 👇**
 
@@ -152,7 +152,7 @@
     "nome": "Strogonoff",
     "descricao": "Filet mignon com ketchup, mostarda, creme de leite e champignon",
     "calorias": 1000,
-    "refeicao": "Café da madrugada"
+    "idRefeicao": 1
 }
 ```
 
@@ -181,7 +181,7 @@
     "nome": "Torresmo",
     "descricao": "Torresminho bem crocante!",
     "calorias": 500,
-    "refeicao": "Café da madrugada"
+    "idRefeicao": 1
 }
 ```
 
