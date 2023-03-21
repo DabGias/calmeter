@@ -62,7 +62,7 @@ public class MetaController {
 
         if (meta.isEmpty()) return ResponseEntity.notFound().build();
 
-        BeanUtils.copyProperties(metaAtualizada, meta);
+        BeanUtils.copyProperties(metaAtualizada, meta.get(), "id");
 
         repo.save(meta.get());
 

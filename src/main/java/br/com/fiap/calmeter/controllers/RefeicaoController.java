@@ -49,9 +49,9 @@ public class RefeicaoController {
 
         Optional<Refeicao> refeicao = repo.findById(id);
 
-        if (refeicao.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        if (refeicao.isEmpty()) return ResponseEntity.notFound().build();
 
-        BeanUtils.copyProperties(refeicaoAtualizada, refeicao, "id");
+        BeanUtils.copyProperties(refeicaoAtualizada, refeicao.get(), "id");
 
         repo.save(refeicao.get());
 

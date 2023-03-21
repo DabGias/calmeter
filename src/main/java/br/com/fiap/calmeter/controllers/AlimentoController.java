@@ -62,7 +62,7 @@ public class AlimentoController {
 
         if (alimento.isEmpty()) return ResponseEntity.notFound().build();
 
-        BeanUtils.copyProperties(alimentoAtualizado, alimento, "id");
+        BeanUtils.copyProperties(alimentoAtualizado, alimento.get(), "id");
 
         repo.save(alimento.get());
 
