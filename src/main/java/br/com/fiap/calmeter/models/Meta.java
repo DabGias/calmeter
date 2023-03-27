@@ -8,6 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tb_meta")
@@ -18,12 +22,18 @@ public class Meta {
     private Long id;
 
     @Column(name = "cal_meta")
+    @Min(value = 0, message = "A meta de calorias deve ser positiva")
+    @NotNull
     private int meta;
 
     @Column(name = "dt_inicio_meta")
+    @Temporal(TemporalType.DATE)
+    @NotNull
     private LocalDate dataInicio;
 
     @Column(name = "dt_fim_meta")
+    @Temporal(TemporalType.DATE)
+    @NotNull
     private LocalDate dataFim;
 
     public Meta() {}

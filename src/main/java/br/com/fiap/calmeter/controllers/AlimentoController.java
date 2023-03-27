@@ -1,7 +1,6 @@
 package br.com.fiap.calmeter.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.calmeter.models.Alimento;
 import br.com.fiap.calmeter.repositories.AlimentoRepository;
@@ -38,11 +38,11 @@ public class AlimentoController {
     public ResponseEntity<Alimento> show(@PathVariable Long id) {
         log.info("buscar alimento com id: " + id);
 
-        Optional<Alimento> alimento = repo.findById(id);
+        Alimento alimento = repo.findById(id).orElseThrow(() -> 
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "Alimento não encontrado")
+        );
 
-        if (alimento.isEmpty()) return ResponseEntity.notFound().build();
-
-        return ResponseEntity.ok(alimento.get());
+        return ResponseEntity.ok(alimento);
     }
 
     @PostMapping
@@ -58,26 +58,26 @@ public class AlimentoController {
     public ResponseEntity<Alimento> update(@PathVariable Long id, @RequestBody Alimento alimentoAtualizado) {
         log.info("atualizar o alimento com id: " + id);
 
-        Optional<Alimento> alimento = repo.findById(id);
+        Alimento alimento = repo.findById(id).orElseThrow(() -> 
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "Alimento não encontrado")
+        );
 
-        if (alimento.isEmpty()) return ResponseEntity.notFound().build();
+        BeanUtils.copyProperties(alimentoAtualizado, alimento, "id");
 
-        BeanUtils.copyProperties(alimentoAtualizado, alimento.get(), "id");
+        repo.save(alimento);
 
-        repo.save(alimento.get());
-
-        return ResponseEntity.ok(alimento.get());
+        return ResponseEntity.ok(alimento);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Alimento> destroy(@PathVariable Long id) {
         log.info("deletar alimento com o id: " + id);
 
-        Optional<Alimento> alimento = repo.findById(id);
+        Alimento alimento = repo.findById(id).orElseThrow(() -> 
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "Alimento não encontrado")
+        );
 
-        if (alimento.isEmpty()) return ResponseEntity.notFound().build();
-
-        repo.delete(alimento.get());
+        repo.delete(alimento);
 
         return ResponseEntity.noContent().build();
     }

@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.ForeignKey;
 
 @Entity
@@ -22,12 +25,16 @@ public class Alimento {
     private Long id;
 
     @Column(name = "nome_alimento")
+    @NotBlank
     private String nome;
 
     @Column(name = "desc_alimento")
+    @NotBlank
     private String descricao;
 
     @Column(name = "cal_alimento")
+    @Min(value = 0, message = "As calorias devem ser positivas")
+    @NotNull
     private int calorias;
 
     @ManyToOne(
@@ -42,6 +49,7 @@ public class Alimento {
             value = ConstraintMode.CONSTRAINT
         )
     )
+    @NotNull
     private Refeicao refeicao;
     
     public Alimento() {}

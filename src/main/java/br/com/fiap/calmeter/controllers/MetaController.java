@@ -1,7 +1,6 @@
 package br.com.fiap.calmeter.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.calmeter.models.Meta;
 import br.com.fiap.calmeter.repositories.MetaRepository;
@@ -38,11 +38,11 @@ public class MetaController {
     public ResponseEntity<Meta> show(@PathVariable Long id) {
         log.info("buscar meta com id: " + id);
 
-        Optional<Meta> meta = repo.findById(id);
+        Meta meta = repo.findById(id).orElseThrow(() -> 
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "Meta não encontrada")
+        );
 
-        if (meta.isEmpty()) return ResponseEntity.notFound().build();
-
-        return ResponseEntity.ok(meta.get());
+        return ResponseEntity.ok(meta);
     }
 
     @PostMapping
@@ -58,26 +58,26 @@ public class MetaController {
     public ResponseEntity<Meta> update(@PathVariable Long id, @RequestBody Meta metaAtualizada) {
         log.info("atualizar a meta com id: " + id);
 
-        Optional<Meta> meta = repo.findById(id);
+        Meta meta = repo.findById(id).orElseThrow(() -> 
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "Meta não encontrada")
+        );
 
-        if (meta.isEmpty()) return ResponseEntity.notFound().build();
+        BeanUtils.copyProperties(metaAtualizada, meta, "id");
 
-        BeanUtils.copyProperties(metaAtualizada, meta.get(), "id");
+        repo.save(meta);
 
-        repo.save(meta.get());
-
-        return ResponseEntity.ok(meta.get());
+        return ResponseEntity.ok(meta);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Meta> destroy(@PathVariable Long id) {
         log.info("deletar meta com o id: " + id);
 
-        Optional<Meta> meta = repo.findById(id);
+        Meta meta = repo.findById(id).orElseThrow(() -> 
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "Meta não encontrada")
+        );
 
-        if (meta.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-
-        repo.delete(meta.get());
+        repo.delete(meta);
 
         return ResponseEntity.noContent().build();
     }
