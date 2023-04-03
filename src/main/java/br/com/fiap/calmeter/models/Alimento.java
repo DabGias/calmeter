@@ -14,7 +14,14 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.ForeignKey;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "tb_alimento")
@@ -51,67 +58,4 @@ public class Alimento {
     )
     @NotNull
     private Refeicao refeicao;
-    
-    public Alimento() {}
-
-    public Alimento(Long id, String nome, String descricao, int calorias, Refeicao refeicao) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.calorias = calorias;
-        this.refeicao = refeicao;
-    }
-
-    public Alimento(String nome, String descricao, int calorias, Refeicao refeicao) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.calorias = calorias;
-        this.refeicao = refeicao;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getCalorias() {
-        return calorias;
-    }
-
-    public void setCalorias(int calorias) {
-        this.calorias = calorias;
-    }
-
-    public Refeicao getRefeicao() {
-        return refeicao;
-    }
-
-    public void setRefeicao(Refeicao refeicao) {
-        this.refeicao = refeicao;
-    }
-
-    @Override
-    public String toString() {
-        return "Alimento [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", calorias=" + calorias
-                + ", idRefeicao=" + refeicao + "]";
-    }
 }
