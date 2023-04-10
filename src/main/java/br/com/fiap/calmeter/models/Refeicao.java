@@ -50,6 +50,6 @@ public class Refeicao {
     @NotNull
     private LocalDate data;
 
-    @OneToMany(mappedBy = "refeicao")
+    @OneToMany
     private List<Alimento> alimentos;
 }

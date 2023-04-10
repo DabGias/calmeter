@@ -47,9 +47,9 @@ public class DatabaseSeeder implements CommandLineRunner {
         ));
 
         repoAlimento.saveAll(List.of(
-            new Alimento(1L, "Porção de arroz", "300g de arroz branco", 1000, ref1),
-            new Alimento(2L, "Porção de batata frita", "500g de batata frita", 5000, ref2),
-            new Alimento(3L, "Almoção brabo", "TUDO que tinha no self service", 99999, ref3)
+            new Alimento(1L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(2L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(3L, "Almoção brabo", "TUDO que tinha no self service", 99999)
         ));
     }
 }
