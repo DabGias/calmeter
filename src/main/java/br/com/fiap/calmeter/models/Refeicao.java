@@ -3,6 +3,13 @@ package br.com.fiap.calmeter.models;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import org.springframework.hateoas.EntityModel;
+
+import br.com.fiap.calmeter.controllers.RefeicaoController;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -52,4 +59,12 @@ public class Refeicao {
 
     @OneToMany
     private List<Alimento> alimentos;
+
+    public EntityModel<Refeicao> toModel() {
+        return EntityModel.of(
+            this,
+            linkTo(methodOn(RefeicaoController.class).destroy(id)).withRel("delete"),
+            linkTo(methodOn(RefeicaoController.class).index(Pageable.unpaged())).withRel("all")
+        );
+    }
 }

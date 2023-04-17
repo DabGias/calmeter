@@ -2,6 +2,13 @@ package br.com.fiap.calmeter.models;
 
 import java.time.LocalDate;
 
+import org.springframework.data.domain.Pageable;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import org.springframework.hateoas.EntityModel;
+
+import br.com.fiap.calmeter.controllers.MetaController;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,4 +49,13 @@ public class Meta {
     @Temporal(TemporalType.DATE)
     @NotNull
     private LocalDate dataFim;
+
+    public EntityModel<Meta> toModel() {
+        return EntityModel.of(
+            this,
+            linkTo(methodOn(MetaController.class).show(id)).withSelfRel(),
+            linkTo(methodOn(MetaController.class).destroy(id)).withRel("delete"),
+            linkTo(methodOn(MetaController.class).index(Pageable.unpaged())).withRel("all")
+        );
+    }
 }

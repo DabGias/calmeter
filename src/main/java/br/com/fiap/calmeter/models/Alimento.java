@@ -1,5 +1,13 @@
 package br.com.fiap.calmeter.models;
 
+import org.springframework.hateoas.EntityModel;
+
+import br.com.fiap.calmeter.controllers.AlimentoController;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+import org.springframework.data.domain.Pageable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,4 +45,13 @@ public class Alimento {
     @Min(value = 0, message = "As calorias devem ser positivas")
     @NotNull
     private int calorias;
+
+    public EntityModel<Alimento> toModel() {
+        return EntityModel.of(
+            this,
+            linkTo(methodOn(AlimentoController.class).show(id)).withSelfRel(),
+            linkTo(methodOn(AlimentoController.class).destroy(id)).withRel("delete"),
+            linkTo(methodOn(AlimentoController.class).index(Pageable.unpaged())).withRel("all")
+        );
+    }
 }

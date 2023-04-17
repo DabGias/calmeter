@@ -49,7 +49,28 @@ public class DatabaseSeeder implements CommandLineRunner {
         repoAlimento.saveAll(List.of(
             new Alimento(1L, "Porção de arroz", "300g de arroz branco", 1000),
             new Alimento(2L, "Porção de batata frita", "500g de batata frita", 5000),
-            new Alimento(3L, "Almoção brabo", "TUDO que tinha no self service", 99999)
+            new Alimento(3L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(4L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(5L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(6L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(7L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(8L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(9L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(10L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(11L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(12L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(13L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(14L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(15L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(16L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(17L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(18L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(19L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(20L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(21L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(22L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(23L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(24L, "Almoção brabo", "TUDO que tinha no self service", 99999)
         ));
     }
 }

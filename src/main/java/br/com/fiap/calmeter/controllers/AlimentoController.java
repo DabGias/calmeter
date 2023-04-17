@@ -4,8 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,20 +32,23 @@ public class AlimentoController {
     @Autowired
     AlimentoRepository repo;
 
+    @Autowired
+    PagedResourcesAssembler<Alimento> assembler;
+
     @GetMapping
-    public Page<Alimento> index(Pageable pageable) {
-        return repo.findAll(pageable);
+    public PagedModel<EntityModel<Alimento>> index(@PageableDefault(size = 5) Pageable pageable) {
+        return assembler.toModel(repo.findAll(pageable));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Alimento> show(@PathVariable Long id) {
+    public EntityModel<Alimento> show(@PathVariable Long id) {
         log.info("buscar alimento com id: " + id);
 
         Alimento alimento = repo.findById(id).orElseThrow(() -> 
             new ResponseStatusException(HttpStatus.NOT_FOUND, "Alimento não encontrado")
         );
 
-        return ResponseEntity.ok(alimento);
+        return alimento.toModel();
     }
 
     @PostMapping

@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,9 +31,12 @@ public class RefeicaoController {
     @Autowired
     RefeicaoRepository repo;
 
+    @Autowired
+    PagedResourcesAssembler<Refeicao> assembler;
+
     @GetMapping
-    public Page<Refeicao> index(Pageable pageable) {
-        return repo.findAll(pageable);
+    public PagedModel<EntityModel<Refeicao>> index(Pageable pageable) {
+        return assembler.toModel(repo.findAll(pageable));
     }
 
     @PostMapping

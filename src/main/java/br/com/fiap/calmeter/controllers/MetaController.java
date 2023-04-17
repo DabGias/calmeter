@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,20 +31,23 @@ public class MetaController {
     @Autowired
     MetaRepository repo;
 
+    @Autowired
+    PagedResourcesAssembler<Meta> assembler;
+
     @GetMapping
-    public Page<Meta> index(Pageable pageable) {
-        return repo.findAll(pageable);
+    public PagedModel<EntityModel<Meta>> index(Pageable pageable) {
+        return assembler.toModel(repo.findAll(pageable));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Meta> show(@PathVariable Long id) {
+    public EntityModel<Meta> show(@PathVariable Long id) {
         log.info("buscar meta com id: " + id);
 
         Meta meta = repo.findById(id).orElseThrow(() -> 
             new ResponseStatusException(HttpStatus.NOT_FOUND, "Meta não encontrada")
         );
 
-        return ResponseEntity.ok(meta);
+        return meta.toModel();
     }
 
     @PostMapping
