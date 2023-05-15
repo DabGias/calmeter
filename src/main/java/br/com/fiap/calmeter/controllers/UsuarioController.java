@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.calmeter.models.Credencial;
 import br.com.fiap.calmeter.models.Usuario;
@@ -14,6 +15,7 @@ import br.com.fiap.calmeter.repositories.UsuarioRepository;
 import br.com.fiap.calmeter.service.TokenService;
 import jakarta.validation.Valid;
 
+@RestController
 public class UsuarioController {
     @Autowired
     UsuarioRepository repo;
