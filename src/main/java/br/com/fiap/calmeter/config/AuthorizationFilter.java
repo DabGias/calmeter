@@ -30,7 +30,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
         String token = request.getHeader("Authorization") == null ? null : request.getHeader("Authorization").replace("Bearer ", "");
         
         if (token != null) {
-            Authentication auth = new UsernamePasswordAuthenticationToken(token, null, repo.findByEmail(token).orElseThrow(() -> new RuntimeException("Usuário não encontrado")).getAuthorities());
+            Authentication auth = new UsernamePasswordAuthenticationToken(repo.findByEmail(tokenService.validar(token)).get(), null, repo.findByEmail(tokenService.validar(token)).get().getAuthorities());
 
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
