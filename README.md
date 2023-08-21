@@ -143,7 +143,7 @@
 | nome | `string` | ✔ | Nome da(o) porção/alimento.
 | descricao | `string` | ❌ | Descrição da(o) porção/alimento.
 | calorias | `int` | ✔ | Número de calorias ingeridas naquela(e) porção/alimento.
-| refeicao | `string` | ✔ | nome da refeição.
+| refeicao | `string` | ✔ | Nome da refeição.
 
 **👇 Corpo de requisição 👇**
 
