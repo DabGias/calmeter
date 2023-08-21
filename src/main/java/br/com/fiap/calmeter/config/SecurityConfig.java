@@ -3,6 +3,7 @@ package br.com.fiap.calmeter.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -19,20 +20,30 @@ public class SecurityConfig {
     @Autowired
     AuthorizationFilter authoFilter;
 
+    @Autowired
+    Environment env;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests()
+        http.authorizeHttpRequests()
             .requestMatchers(HttpMethod.POST, "/calmeter/registrar").permitAll()
             .requestMatchers(HttpMethod.POST, "/calmeter/login").permitAll()
-        .anyRequest().authenticated()
+            .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
         .and()
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
             .headers().frameOptions().sameOrigin()
         .and()
-            .addFilterBefore(authoFilter, UsernamePasswordAuthenticationFilter.class)
-            .build();
+            .addFilterBefore(authoFilter, UsernamePasswordAuthenticationFilter.class);
+
+        if (env.getActiveProfiles().length > 0 && env.getActiveProfiles()[0].equals("test")) {
+            http.authorizeHttpRequests().anyRequest().permitAll();
+        } else {
+            http.authorizeHttpRequests().anyRequest().authenticated();
+        }
+
+        return http.build();
     }
 
     @Bean

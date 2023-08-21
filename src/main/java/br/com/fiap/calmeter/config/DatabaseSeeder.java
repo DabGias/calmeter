@@ -31,6 +31,37 @@ public class DatabaseSeeder implements CommandLineRunner {
         Refeicao ref2 = new Refeicao(2L, "Café da tarde", LocalDate.now(), null);
         Refeicao ref3 = new Refeicao(3L, "Café das 15:46", LocalDate.now(), null);
 
+        List<Alimento> alimentos1 = List.of(
+            new Alimento(1L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(2L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(3L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(4L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(5L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(6L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(7L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(8L, "Porção de batata frita", "500g de batata frita", 5000)
+        );
+        List<Alimento> alimentos2 = List.of(
+            new Alimento(9L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(10L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(11L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(12L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(13L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(14L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(15L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(16L, "Porção de arroz", "300g de arroz branco", 1000)
+        );
+        List<Alimento> alimentos3 = List.of(
+            new Alimento(17L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(18L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(19L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(20L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(21L, "Almoção brabo", "TUDO que tinha no self service", 99999),
+            new Alimento(22L, "Porção de arroz", "300g de arroz branco", 1000),
+            new Alimento(23L, "Porção de batata frita", "500g de batata frita", 5000),
+            new Alimento(24L, "Almoção brabo", "TUDO que tinha no self service", 99999)
+        );
+
         repoMeta.saveAll(List.of(
             new Meta(1L, 3000, LocalDate.now(), LocalDate.now().plusDays(7)),
             new Meta(2L, 4000, LocalDate.now(), LocalDate.now().plusDays(7)),
@@ -40,10 +71,6 @@ public class DatabaseSeeder implements CommandLineRunner {
             new Meta(6L, 8000, LocalDate.now(), LocalDate.now().plusDays(7)),
             new Meta(7L, 9000, LocalDate.now(), LocalDate.now().plusDays(7)),
             new Meta(8L, 10000, LocalDate.now(), LocalDate.now().plusDays(7))
-        ));
-
-        repoRefeicao.saveAll(List.of(
-            ref1, ref2, ref3
         ));
 
         repoAlimento.saveAll(List.of(
@@ -71,6 +98,14 @@ public class DatabaseSeeder implements CommandLineRunner {
             new Alimento(22L, "Porção de arroz", "300g de arroz branco", 1000),
             new Alimento(23L, "Porção de batata frita", "500g de batata frita", 5000),
             new Alimento(24L, "Almoção brabo", "TUDO que tinha no self service", 99999)
+        ));
+
+        ref1.setAlimentos(alimentos1);
+        ref2.setAlimentos(alimentos2);
+        ref3.setAlimentos(alimentos3);
+
+        repoRefeicao.saveAll(List.of(
+            ref1, ref2, ref3
         ));
     }
 }
